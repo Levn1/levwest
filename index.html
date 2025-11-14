@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lev West Limited</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* ---------- Base Reset ---------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Neutral palette */
+      --bg: #111111;
+      --bg-soft: #181818;
+      --card: #f5f2ec;
+      --card-soft: #e7e1d7;
+      --text: #1f1f1f;
+      --muted: #666666;
+      --accent: #262626;
+      --border-subtle: rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #292826 0, #111111 48%, #0a0a0a 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- Layout ---------- */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: min(1040px, 100% - 3rem);
+      margin: 0 auto;
+    }
+
+    main {
+      flex: 1;
+      padding: 3.5rem 0 3rem;
+    }
+
+    /* ---------- Header / Hero ---------- */
+    header {
+      padding: 1.5rem 0 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 1rem;
+    }
+
+    .branding-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* Logo placeholder */
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 10%, #e7e1d7 0, #b3aa9b 28%, #383531 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      color: #111111;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .logo-text span {
+      display: block;
+    }
+
+    .logo-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+    }
+
+    .logo-tagline {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      color: #a7a7a7;
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #9b9b9b;
+    }
+
+    .header-meta div + div {
+      margin-top: 0.15rem;
+    }
+
+    /* ---------- Hero Content ---------- */
+    .hero {
+      margin-top: 2.25rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .hero-main {
+      background: linear-gradient(135deg, rgba(245, 242, 236, 0.97), rgba(231, 225, 215, 0.98));
+      border-radius: 18px;
+      padding: 1.8rem 1.8rem 1.9rem;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-main h1 {
+      font-size: clamp(1.9rem, 3vw, 2.3rem);
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+      color: #151515;
+    }
+
+    .hero-main p {
+      font-size: 0.98rem;
+      max-width: 36rem;
+      color: #49433a;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-subline {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #888077;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding-top: 0.95rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .hero-note {
+      background: rgba(16, 16, 16, 0.78);
+      border-radius: 16px;
+      padding: 1.1rem 1.25rem;
+      color: #e4e4e4;
+      font-size: 0.86rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-note-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #b3b3b3;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-note p {
+      color: #dedede;
+    }
+
+    .hero-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .hero-list li {
+      font-size: 0.84rem;
+      color: #cacaca;
+    }
+
+    /* ---------- Content Sections ---------- */
+    .sections {
+      margin-top: 2.75rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    .section-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.6rem 1.7rem 1.7rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+    }
+
+    .section-card.alt {
+      background: var(--card-soft);
+    }
+
+    .section-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+
+    .section-card p {
+      font-size: 0.93rem;
+      color: #4b4337;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* ---------- Contact / Footer ---------- */
+    .footer-block {
+      margin-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 1.4rem;
+      padding-bottom: 1.4rem;
+      font-size: 0.87rem;
+      color: #d0d0d0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .footer-contact-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b9b9b;
+    }
+
+    .footer-contact a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-decoration-thickness: 1px;
+    }
+
+    .footer-address {
+      white-space: pre-line;
+      font-size: 0.86rem;
+      color: #c3c3c3;
+    }
+
+    .footer-meta {
+      font-size: 0.78rem;
+      color: #8a8a8a;
+      text-align: right;
+      min-width: 170px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sections {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-side {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .hero-note {
+        flex: 1 1 220px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 2rem, 700px);
+      }
+
+      header {
+        padding-top: 1.2rem;
+      }
+
+      .branding-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .header-meta {
+        text-align: left;
+      }
+
+      main {
+        padding-top: 2.4rem;
+      }
+
+      .hero-main {
+        padding: 1.45rem 1.45rem 1.6rem;
+      }
+
+      .sections {
+        margin-top: 2.1rem;
+      }
+
+      .footer-block {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-meta {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="shell branding-row">
+        <div class="logo-lockup">
+          <!-- Replace this logo-mark with your actual logo image if you like -->
+          <div class="logo-mark">LW</div>
+          <div class="logo-text">
+            <span class="logo-name">Lev West</span>
+            <span class="logo-tagline">Commerce & Brand Studio</span>
+          </div>
+        </div>
+        <div class="header-meta">
+          <div>Lev West Limited · United Kingdom</div>
+          <div>Working quietly in eCommerce, brands & digital.</div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="shell">
+        <!-- Hero -->
+        <section class="hero">
+          <div class="hero-main">
+            <div class="hero-kicker">Lev West Limited</div>
+            <h1>Thoughtful eCommerce, brand and digital work from the UK.</h1>
+            <p>
+              Lev West is a small studio operating out of the United Kingdom, working across
+              eCommerce, digital marketing, brand development and copywriting. We collaborate
+              with selected partners and build projects of our own, staying close to the details
+              while keeping a long-term view of the brands we touch.
+            </p>
+            <p>
+              Our work often sits at the intersection of strategy and execution: designing how a
+              brand should feel, then carrying that through into products, platforms and day-to-day
+              communication with customers.
+            </p>
+            <div class="hero-subline">
+              Commerce, content and brands — usually online, occasionally offline.
+            </div>
+          </div>
+
+          <aside class="hero-side">
+            <div class="hero-note">
+              <div class="hero-note-title">Focus Areas</div>
+              <p>
+                Lev West supports consumer brands, online retailers and founders who care about the
+                words, systems and structures behind their business.
+              </p>
+              <ul class="hero-list">
+                <li>eCommerce concepts & brand launches</li>
+                <li>Digital positioning & messaging</li>
+                <li>Conversion-minded copy & content</li>
+              </ul>
+            </div>
+
+            <div class="hero-note">
+              <div class="hero-note-title">A Quiet Portfolio</div>
+              <p>
+                Alongside client work, Lev West develops its own online projects and brands,
+                experimenting with products, customer journeys and operating models in real time.
+                Insights from those experiments inform how we work with others.
+              </p>
+            </div>
+          </aside>
+        </section>
+
+        <!-- Content Sections -->
+        <section class="sections">
+          <article class="section-card">
+            <div class="section-title">What we do</div>
+            <h2>Commerce, content and everything around them.</h2>
+            <div class="stack">
+              <p>
+                Lev West Limited works with businesses that sell primarily online: direct-to-consumer
+                brands, marketplace operators, and product companies looking to refine or extend their
+                digital presence. Engagements can be narrow and tactical or broader and ongoing,
+                depending on what is needed.
+              </p>
+              <p>
+                Typical work includes shaping brand narratives, establishing tone of voice,
+                developing product stories, and aligning on how a business is presented across
+                channels — from website copy and landing pages through to emails, ads and packaging.
+              </p>
+              <p>
+                We also help existing eCommerce operations review their foundations: product
+                architecture, on-site flows, content hierarchy and the small details that tend to
+                influence how customers move, read and decide.
+              </p>
+            </div>
+          </article>
+
+          <article class="section-card alt">
+            <div class="section-title">How we operate</div>
+            <h2>Deliberate, collaborative, and deliberately small.</h2>
+            <div class="stack">
+              <p>
+                Lev West is intentionally lean. Most work is handled directly by the core team, with
+                specialists brought in where useful for design, development or channel-specific
+                execution. This keeps communication simple and ensures projects stay close to their
+                original intent.
+              </p>
+              <p>
+                We work with a limited number of clients at any given time and usually on a
+                project-by-project or retained basis. Some relationships are centred around a single
+                launch or campaign; others involve ongoing support as brands grow, test and adapt.
+              </p>
+              <p>
+                The common thread is clarity: making sure that brands know what they are trying to
+                say, how they want to sound, and what role each piece of communication plays in the
+                broader commercial picture.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Contact / Footer block -->
+        <section class="footer-block">
+          <div class="footer-contact">
+            <div class="footer-contact-label">Contact</div>
+            <div>
+              Email:
+              <a href="mailto:hello@levwest.com">hello@levwest.com</a>
+            </div>
+            <div class="footer-address">
+Lev West Limited
+103 High Street
+Waltham Cross, Hertfordshire
+United Kingdom, EN8 7AN
+            </div>
+          </div>
+
+          <div class="footer-meta">
+            <div>Registered in England and Wales as Lev West Limited.</div>
+            <div>&copy; <span id="year"></span> Lev West. All rights reserved.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
